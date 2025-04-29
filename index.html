@@ -6,10 +6,109 @@
     <title>魔法钟声探险</title>
     <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&display=swap" rel="stylesheet">
     <style>
-        /* 保持原有样式不变 */
-        :root { --primary: #FF6B6B; --secondary: #4ECDC4; --accent: #FFE66D; }
-        body { font-family: 'Comic Neue', cursive; background: url('https://cdn.pixabay.com/photo/2016/05/25/18/03/clouds-1415064_1280.jpg'); }
-        /* 其他样式保持不变 */
+        :root {
+            --primary: #FF6B6B;
+            --secondary: #4ECDC4;
+            --accent: #FFE66D;
+        }
+
+        body {
+            font-family: 'Comic Neue', cursive;
+            background: url('https://cdn.pixabay.com/photo/2016/05/25/18/03/clouds-1415064_1280.jpg');
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            padding: 20px;
+            background: rgba(255,255,255,0.9);
+            border-radius: 20px;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            color: var(--primary);
+            font-size: 2.5em;
+            text-shadow: 2px 2px 0 white;
+            margin: 0;
+        }
+
+        .question-card {
+            background: rgba(255,255,255,0.95);
+            border-radius: 20px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            position: relative;
+        }
+
+        .question-title {
+            color: var(--secondary);
+            font-size: 1.5em;
+            margin-bottom: 20px;
+        }
+
+        .options-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .option-btn {
+            padding: 15px;
+            border: none;
+            border-radius: 15px;
+            background: white;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            position: relative;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+        }
+
+        .option-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+        }
+
+        .option-btn.selected {
+            background: var(--accent);
+            animation: bounce 0.5s;
+        }
+
+        .option-icon {
+            width: 60px;
+            height: 60px;
+            margin-right: 15px;
+        }
+
+        .star-reward {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: white;
+            padding: 10px 20px;
+            border-radius: 30px;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(0.95); }
+        }
+
+        @media (max-width: 600px) {
+            .options-grid {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
 </head>
 <body>
@@ -17,31 +116,55 @@
         <div class="header">
             <h1>🕰️ 魔法钟声探险 🎵</h1>
             <div class="star-reward">
-                ✨ 收集星星：<span id="starCount">0</span>/2
+                ✨ 收集星星：<span id="starCount">0</span>/5
             </div>
         </div>
 
-        <!-- 问题1保持不变 -->
+        <!-- 问题1 -->
+        <div class="question-card">
+            <div class="question-title">
+                <img src="https://cdn-icons-png.flaticon.com/512/2088/2088617.png" width="40" alt="时钟">
+                听到"滴答滴答"你会想到？
+            </div>
+            <div class="options-grid">
+                <button class="option-btn" data-correct>
+                    <img src="https://cdn-icons-png.flaticon.com/512/2088/2088586.png" class="option-icon">
+                    小闹钟起床啦！
+                </button>
+                <button class="option-btn">
+                    <img src="https://cdn-icons-png.flaticon.com/512/263/263409.png" class="option-icon">
+                    雨滴在跳舞
+                </button>
+                <button class="option-btn">
+                    <img src="https://cdn-icons-png.flaticon.com/512/860/860790.png" class="option-icon">
+                    节拍器先生
+                </button>
+                <button class="option-btn">
+                    <img src="https://cdn-icons-png.flaticon.com/512/1003/1003100.png" class="option-icon">
+                    其他小秘密
+                </button>
+            </div>
+        </div>
 
-        <!-- 修改后的问题2 -->
+        <!-- 问题2 -->
         <div class="question-card">
             <div class="question-title">
                 <img src="https://cdn-icons-png.flaticon.com/512/2592/2592535.png" width="40" alt="大钟">
                 大钟爷爷的声音像什么？
             </div>
             <div class="options-grid">
-                <button class="option-btn">
-                    <img src="https://cdn-icons-png.flaticon.com/512/1067/1067555.png" class="option-icon">
-                    1. 银铃声
-                </button>
                 <button class="option-btn" data-correct>
-                    <img src="https://cdn-icons-png.flaticon.com/512/2932/2932069.png" class="option-icon">
-                    2. 浑厚的号角
+                    <img src="https://cdn-icons-png.flaticon.com/512/2592/2592510.png" class="option-icon">
+                    轰隆隆的雷声
+                </button>
+                <button class="option-btn">
+                    <img src="https://cdn-icons-png.flaticon.com/512/4140/4140044.png" class="option-icon">
+                    哗啦啦的瀑布
                 </button>
             </div>
         </div>
 
-        <!-- 修改后的问题3 -->
+        <!-- 问题3 -->
         <div class="question-card">
             <div class="question-title">
                 <img src="https://cdn-icons-png.flaticon.com/512/2592/2592547.png" width="40" alt="小钟">
@@ -49,31 +172,31 @@
             </div>
             <div class="options-grid">
                 <button class="option-btn" data-correct>
-                    <img src="https://cdn-icons-png.flaticon.com/512/1067/1067572.png" class="option-icon">
-                    1. 叮当的风铃声
+                    <img src="https://cdn-icons-png.flaticon.com/512/2592/2592561.png" class="option-icon">
+                    叮铃铃的银铃
                 </button>
                 <button class="option-btn">
-                    <img src="https://cdn-icons-png.flaticon.com/512/2932/2932157.png" class="option-icon">
-                    2. 沉闷的雷声
+                    <img src="https://cdn-icons-png.flaticon.com/512/4471/4471812.png" class="option-icon">
+                    扑通通的心跳
                 </button>
             </div>
         </div>
     </div>
 
     <script>
-        // 更新星星计数逻辑
         let stars = 0;
-        const maxStars = 2; // 根据问题数量调整
         
         document.querySelectorAll('.option-btn').forEach(btn => {
             btn.addEventListener('click', function() {
+                // 清除其他选项的选择状态
                 this.parentElement.querySelectorAll('.option-btn').forEach(b => 
                     b.classList.remove('selected'));
                 
                 this.classList.add('selected');
                 
+                // 正确选项奖励星星
                 if(this.dataset.correct) {
-                    stars = Math.min(stars + 1, maxStars);
+                    stars = Math.min(stars + 1, 5);
                     document.getElementById('starCount').textContent = stars;
                     this.style.background = '#FFE66D';
                     this.insertAdjacentHTML('beforeend', 
