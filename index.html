@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>魔法钟声探险</title>
+    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&display=swap" rel="stylesheet">
+    <style>
+        /* 保持原有样式不变 */
+        :root { --primary: #FF6B6B; --secondary: #4ECDC4; --accent: #FFE66D; }
+        body { font-family: 'Comic Neue', cursive; background: url('https://cdn.pixabay.com/photo/2016/05/25/18/03/clouds-1415064_1280.jpg'); }
+        /* 其他样式保持不变 */
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🕰️ 魔法钟声探险 🎵</h1>
+            <div class="star-reward">
+                ✨ 收集星星：<span id="starCount">0</span>/2
+            </div>
+        </div>
+
+        <!-- 问题1保持不变 -->
+
+        <!-- 修改后的问题2 -->
+        <div class="question-card">
+            <div class="question-title">
+                <img src="https://cdn-icons-png.flaticon.com/512/2592/2592535.png" width="40" alt="大钟">
+                大钟爷爷的声音像什么？
+            </div>
+            <div class="options-grid">
+                <button class="option-btn">
+                    <img src="https://cdn-icons-png.flaticon.com/512/1067/1067555.png" class="option-icon">
+                    1. 银铃声
+                </button>
+                <button class="option-btn" data-correct>
+                    <img src="https://cdn-icons-png.flaticon.com/512/2932/2932069.png" class="option-icon">
+                    2. 浑厚的号角
+                </button>
+            </div>
+        </div>
+
+        <!-- 修改后的问题3 -->
+        <div class="question-card">
+            <div class="question-title">
+                <img src="https://cdn-icons-png.flaticon.com/512/2592/2592547.png" width="40" alt="小钟">
+                小钟宝宝的声音像什么？
+            </div>
+            <div class="options-grid">
+                <button class="option-btn" data-correct>
+                    <img src="https://cdn-icons-png.flaticon.com/512/1067/1067572.png" class="option-icon">
+                    1. 叮当的风铃声
+                </button>
+                <button class="option-btn">
+                    <img src="https://cdn-icons-png.flaticon.com/512/2932/2932157.png" class="option-icon">
+                    2. 沉闷的雷声
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 更新星星计数逻辑
+        let stars = 0;
+        const maxStars = 2; // 根据问题数量调整
+        
+        document.querySelectorAll('.option-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                this.parentElement.querySelectorAll('.option-btn').forEach(b => 
+                    b.classList.remove('selected'));
+                
+                this.classList.add('selected');
+                
+                if(this.dataset.correct) {
+                    stars = Math.min(stars + 1, maxStars);
+                    document.getElementById('starCount').textContent = stars;
+                    this.style.background = '#FFE66D';
+                    this.insertAdjacentHTML('beforeend', 
+                        '<div style="position:absolute; right:10px;">🎉</div>');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
